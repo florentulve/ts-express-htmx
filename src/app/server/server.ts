@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import helmet from "helmet";
-import morgan from "morgan";
 import layout from "./components/layout/BaseHtml";
+import morgan from "morgan";
 
 const app = express();
 const port = process.env["PORT"] ?? 3000;

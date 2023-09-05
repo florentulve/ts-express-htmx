@@ -1,5 +1,5 @@
 import { connect, runMigratation } from "./database/database";
-import { users } from "./database/schemas";
+import { projects, contributors, groups } from "./database/schema";
 import { serve } from "./server";
 
 async function startServer() {
@@ -8,4 +8,4 @@ async function startServer() {
     serve();
 }
 
-export { startServer, users };
+export { startServer, projects, contributors, groups };
