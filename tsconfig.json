@@ -1,9 +1,38 @@
 {
-    "extends": "./tsconfig.base.json",
-    "include": ["src/**/*"],
+    "extends": ["@tsconfig/node20", "@tsconfig/strictest"],
     "compilerOptions": {
-        "outDir": "dist",
-        "incremental": false,
-        "noEmit": false
-    }
+        "allowUnusedLabels": true,
+        "noUnusedParameters": false,
+        "noUnusedLocals": false,
+
+        "module": "NodeNext",
+        "target": "ESNext",
+        "moduleResolution": "NodeNext",
+
+        "jsx": "react",
+        "jsxFactory": "html.createElement",
+        "jsxFragmentFactory": "html.Fragment",
+
+        "incremental": true,
+        "declaration": true,
+        "allowJs": true,
+        "noEmit": true,
+
+        /* Strict Type-Checking Options */
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "resolveJsonModule": true,
+
+        /* Experimental Options */
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": false,
+
+        "outDir": "dist"
+    },
+    "include": ["src/**/*"]
 }
