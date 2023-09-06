@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { startServer } from "./server";
 import "dotenv/config";
 import { setGlobalDispatcher, ProxyAgent } from "undici";
-import { getAllProjects } from "./gitlab";
+import { getAllProjects, getGroup } from "./gitlab";
 
 if (process.env["HTTPS_PROXY"]) {
     const dispatcher = new ProxyAgent({ uri: new URL(process.env["HTTPS_PROXY"]).toString() });
@@ -23,7 +23,7 @@ program
     .command("gitlab")
     .description("Start the server")
     .action(() => {
-        getAllProjects();
+        getGroup();
     });
 
 program.parse();

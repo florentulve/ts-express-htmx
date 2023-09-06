@@ -1,24 +1,28 @@
-import { Gitlab } from "@gitbeaker/rest";
+import { Gitlab as _Gitlab } from "@gitbeaker/rest";
 
-class GitlabClient {
-    constructor() {}
-}
-export function getAllProjects() {
-    const api = new Gitlab({
-        host: "https://gitlab.com/",
-        token: `${process.env["GIT_TOKEN"]}`,
-    });
-    const p = api.Projects.all({
-        archived: false,
-        pagination: "offset",
-        perPage: 40,
-        maxPages: 2,
-        showExpanded: true,
-    });
+class GitlabApi {
+    readonly _gitlab;
 
-    p.then(({ data, paginationInfo }) => {
-        data.forEach((e) => {
-            console.log(e.name);
+    constructor() {
+        this._gitlab = new _Gitlab({
+            host: "https://gitlab.com/",
+            token: `${process.env["GIT_TOKEN"]}`,
         });
-    });
+    }
+
+    getProjectsWithinGroup() {
+        this._gitlab.Groups.allProjects(1, {
+            pagination: "offset",
+            perPage: 40,
+            maxPages: 2,
+            showExpanded: true,
+        });
+    }
+
+    getGroup(search: string) {
+        this._gitlab.Groups.all({
+            allAvailable: true,
+            search: search,
+        });
+    }
 }
